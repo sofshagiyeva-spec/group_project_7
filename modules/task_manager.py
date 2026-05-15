@@ -57,17 +57,7 @@ def display_tasks(tasks):
         else:
             priority_icon = "НИЗКИЙ ПРИОРИТЕТ"
         
-        is_hot = False
-        try:
-            deadline_date = datetime.strptime(deadline, "%Y-%m-%d")
-            days_left = (deadline_date - datetime.now()).days
-            if 0 <= days_left <= 2 and status == "not_done":
-                is_hot = True
-        except:
-            pass
-        hot_marker = "ГОРЯЩАЯ!" if is_hot else ""
-        
-        print(f"\n [{i}] {name} {hot_marker}")
+        print(f"\n [{i}] {name}")
         print(f"   {description}")
         print(f"   Дедлайн: {deadline} | Приоритет: {priority_icon}")
         print(f"   Статус: {status_text}")
