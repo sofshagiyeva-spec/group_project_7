@@ -71,3 +71,30 @@ def get_all_tasks(tasks):
     Возвращает все задачи (без фильтров)
     """
     return tasks
+
+
+def mark_task_done(tasks, task_name):
+    """
+    Отмечает задачу как выполненную.
+    Ищет задачу по имени и меняет статус на 'done'.
+    """
+    for task in tasks:
+        if task[0] == task_name:
+            task[4] = 'done'
+            print(f"Задача '{task_name}' отмечена как выполненная!")
+            return tasks
+    print(f"Задача '{task_name}' не найдена!")
+    return tasks
+
+def delete_task(tasks, task_name):
+    """
+    Удаляет задачу из списка.
+    Ищет задачу по имени и удаляет её.
+    """
+    for task in tasks:
+        if task[0] == task_name:
+            tasks.remove(task)
+            print(f"Задача '{task_name}' удалена!")
+            return tasks
+    print(f"Задача '{task_name}' не найдена!")
+    return tasks
