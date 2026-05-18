@@ -99,10 +99,23 @@ def delete_task(tasks, task_name):
     print(f"Задача '{task_name}' не найдена!")
     return tasks
 
-def dedline_check(tasks):
+def deadline_check(tasks):
+    """
+    Проверяет задачи с дедлайном <= 2 дням (горящие дедлайны)
+    Названия таких задач преобразует в заглавные буквы
+    """
+    today = datetime.now().date()
+    
     for task in tasks:
-        if task[2] <= 2:
-            task[0] = task[0].upper()
+        deadline_date = datetime.strptime(task[2], "%Y-%m-%d").date()
+        
+        days_left = (deadline_date - today).days
+        if 0 <= days_left <= 2:
+            task[0] = task[0].upper()  # Преобразуем название в заглавные
+        else:
+            if task[0].isupper() and days_left > 2:
+                task[0] = task[0].capitalize()
+    
     return tasks
 
 # Сортировка по дедлайну
